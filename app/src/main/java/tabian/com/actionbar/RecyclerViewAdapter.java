@@ -17,84 +17,65 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
-    private static final String TAG = "RecyclerViewAdapter";
-    private ArrayList<String> mBookNames = new ArrayList<>();
-    private ArrayList<String> mBookAuthors = new ArrayList<>();
-    private ArrayList<String> mBookImages = new ArrayList<>();
-    private ArrayList<ImageButton> mDeleteButton = new ArrayList<>();
-    private ArrayList<ImageButton> mAddToReturnedButton = new ArrayList<>();
-    private Context mContext;
+    Context mContext;
+    List<Book> mData;
 
-    public RecyclerViewAdapter(Context context, ArrayList<String> bookNames, ArrayList<String> bookImages, ArrayList<ImageButton> deleteButtons, ArrayList<ImageButton> addToReturnedButtons, ArrayList<String> bookAuthors) {
-        mBookNames = bookNames;
-        mBookImages = bookImages;
-        mBookAuthors = bookAuthors;
-        mDeleteButton = deleteButtons;
-        mAddToReturnedButton = addToReturnedButtons;
-        mContext = context;
-
+    public RecyclerViewAdapter(Context mContext, List<Book> mData) {
+        this.mContext = mContext;
+        this.mData = mData;
     }
-
-
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.not_returned_listitem, parent, false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v;
+        v = LayoutInflater.from(mContext).inflate(R.layout.not_returned_listitem, parent, false);
+        MyViewHolder vHolder = new MyViewHolder(v);
+        return vHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Log.d(TAG, "onBindViewHolder: called.");
-        System.out.println(mBookImages.size());
-        Glide.with(mContext)
-                .asBitmap()
-                .load(mBookImages.get(position))
-                .into(holder.bookImage);
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-
-        holder.bookName.setText(mBookNames.get(position));
-        Log.d(TAG, "onBindViewHolder: this method has finished");
-
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d(TAG, "onClick: clicked on: " + mBookNames.get(position));
-
-                Toast.makeText(mContext, mBookNames.get(position), Toast.LENGTH_SHORT).show();
-            }
-        });
+        holder.book_name.setText(mData.get(position).getBookname());
+        holder.book_author.setText(mData.get(position).getBookauthor());
+        holder.book_cover.setImageResource(mData.get(position).getBookcover());
+        holder.delete_button.setImageResource(mData.get(position).getDelete());
+        holder.add_to_returned_button.setImageResource(mData.get(position).getAddreturned());
+        /*holder.add_to_not_returned.setImageResource(mData.get(position).getAddnotreturned());*/
+       
 
     }
 
     @Override
     public int getItemCount() {
-        return mBookNames.size();
+        return mData.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        private TextView book_name;
+        private TextView book_author;
+        private ImageView book_cover;
+        private ImageView delete_button;
+        private ImageView add_to_returned_button;
+        private ImageView add_to_not_returned;
 
-        RelativeLayout parentLayout;
-        TextView bookName;
-        TextView author;
-        ImageButton deleteButton;
-        ImageButton addToReturnedButton;
-        ImageView bookImage;
 
-
-        public ViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            parentLayout = itemView.findViewById(R.id.notReturned_parent_layout);
-            bookName = itemView.findViewById(R.id.bookname_listview);
-            author = itemView.findViewById(R.id.bookauthor_listview);
-            deleteButton = itemView.findViewById(R.id.delete_button);
-            addToReturnedButton = itemView.findViewById(R.id.add_to_returned_button);
-            bookImage = itemView.findViewById(R.id.bookcover_listview);
+
+            book_name = itemView.findViewById(R.id.bookname_listview);
+            book_author = itemView.findViewById(R.id.bookauthor_listview);
+            book_cover = itemView.findViewById(R.id.bookcover_listview);
+            delete_button = itemView.findViewById(R.id.delete_button);
+            /*add_to_not_returned = itemView.findViewById(R.id.);*/
+            add_to_returned_button = itemView.findViewById(R.id.add_to_returned_button);
         }
     }
+
+
 }

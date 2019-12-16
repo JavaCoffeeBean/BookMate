@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -43,14 +44,14 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> mBookNames = new ArrayList<>();
     private ArrayList<String> mBookAuthors = new ArrayList<>();
     private ArrayList<String> mBookImages = new ArrayList<>();
-    private ArrayList<ImageButton> DeleteButtons = new ArrayList<>();
-    private ArrayList<ImageButton> AddToReturnedButtons = new ArrayList<>();
+    private ArrayList<ImageView> DeleteButtons = new ArrayList<>();
+    private ArrayList<ImageView> AddToReturnedButtons = new ArrayList<>();
 
     private ArrayList<String> mBookNames2 = new ArrayList<>();
     private ArrayList<String> mBookAuthors2 = new ArrayList<>();
     private ArrayList<String> mBookImages2 = new ArrayList<>();
-    private ArrayList<ImageButton> DeleteButtons2 = new ArrayList<>();
-    private ArrayList<ImageButton> AddToReturnedButtons2 = new ArrayList<>();
+    private ArrayList<ImageView> DeleteButtons2 = new ArrayList<>();
+    private ArrayList<ImageView> AddToReturnedButtons2 = new ArrayList<>();
 
     private ActionBar toolbar;
 
@@ -147,9 +148,7 @@ public class MainActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(tab.getPosition());
                 if (tab.getPosition() == 0) {
                     pagerAdapter.notifyDataSetChanged();
-                    initImageBitmaps();
 
-                    initRecyclerView();
 
 
                     Log.d(TAG, "onTabSelected: iq10000000! wow!");
@@ -222,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
         mBookAuthors.add("Chinua Achebe");
 
         mBookImages.add("http://cdn.shopify.com/s/files/1/2697/1746/products/1984-book-cover-art-book-cover-prints-2_1531c558-4ea7-4a8b-95f4-1fa3534f0ee9_1200x1200.jpg?v=1571739186");
-        mBookNames.add("1984");
+        mBookNames.add("nef");
         mBookAuthors.add("George Orwell");
 
         mBookImages.add("https://prodimage.images-bn.com/pimages/9781610427678_p0_v1_s550x406.jpg");
@@ -264,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
         mBookAuthors2.add("Chinua Achebe");
 
         mBookImages2.add("http://cdn.shopify.com/s/files/1/2697/1746/products/1984-book-cover-art-book-cover-prints-2_1531c558-4ea7-4a8b-95f4-1fa3534f0ee9_1200x1200.jpg?v=1571739186");
-        mBookNames2.add("1984");
+        mBookNames2.add("nef");
         mBookAuthors2.add("George Orwell");
 
         mBookImages2.add("https://prodimage.images-bn.com/pimages/9781610427678_p0_v1_s550x406.jpg");
@@ -286,7 +285,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("newborn");
     }
 
-    public void initRecyclerView(){
+    /*public void initRecyclerView(){
         Log.d(TAG, "initRecyclerView: init RecyclerView.");
 
         LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -303,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    }
+    }*/
 
     /*public void initRecyclerView2(){
         Log.d(TAG, "initRecyclerView: init RecyclerView.");

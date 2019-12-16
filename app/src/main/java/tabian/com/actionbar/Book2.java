@@ -1,9 +1,6 @@
 package tabian.com.actionbar;
 
-import android.widget.ImageButton;
-import android.widget.ImageView;
-
-public class Book {
+public class Book2 {
 
     private String Bookname;
     private String Bookauthor;
@@ -12,16 +9,16 @@ public class Book {
     private int Addreturned;
     private int Addnotreturned;
 
-    public Book() {
+    public Book2() {
 
     }
 
-    public Book(String bookname, String bookauthor, int bookcover, int delete, int addnotreturned) {
+    public Book2(String bookname, String bookauthor, int bookcover, int delete, int addreturned) {
         Bookname = bookname;
         Bookauthor = bookauthor;
         Bookcover = bookcover;
         Delete = delete;
-        Addnotreturned = addnotreturned;
+        Addreturned = addreturned;
     }
 
     //getter
@@ -47,9 +44,7 @@ public class Book {
         return Addreturned;
     }
 
-    public int getAddnotreturned() {
-        return Addnotreturned;
-    }
+
 
     //setter
 
@@ -74,7 +69,4 @@ public class Book {
         Addreturned = addreturned;
     }
 
-    public void setAddnotreturned(int addnotreturned) {
-        Addnotreturned = addnotreturned;
-    }
 }
