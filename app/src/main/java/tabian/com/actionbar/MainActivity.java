@@ -84,30 +84,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.ic_arrow:
+                    case R.id.ic_home:
                         tabsFunctionality();
 
                         break;
 
-                    case R.id.ic_android:
+                    case R.id.ic_reminders:
                         Intent intent1 = new Intent(MainActivity.this, ActivityOne.class);
                         startActivity(intent1);
                         break;
 
-                    case R.id.ic_books:
+                    case R.id.ic_settings:
                         Intent intent2 = new Intent(MainActivity.this, ActivityTwo.class);
                         startActivity(intent2);
                         break;
 
-                    case R.id.ic_center_focus:
-                        Intent intent3 = new Intent(MainActivity.this, ActivityThree.class);
-                        startActivity(intent3);
-                        break;
-
-                    case R.id.ic_backup:
-                        Intent intent4 = new Intent(MainActivity.this, ActivityFour.class);
-                        startActivity(intent4);
-                        break;
                 }
 
 
