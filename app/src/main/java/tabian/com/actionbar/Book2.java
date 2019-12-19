@@ -13,12 +13,12 @@ public class Book2 {
 
     }
 
-    public Book2(String bookname, String bookauthor, int bookcover, int delete, int addreturned) {
+    public Book2(String bookname, String bookauthor, int bookcover, int delete, int addnotreturned) {
         Bookname = bookname;
         Bookauthor = bookauthor;
         Bookcover = bookcover;
         Delete = delete;
-        Addreturned = addreturned;
+        Addnotreturned = addnotreturned;
     }
 
     //getter
@@ -40,8 +40,8 @@ public class Book2 {
         return Delete;
     }
 
-    public int getAddreturned() {
-        return Addreturned;
+    public int getAddnotreturned() {
+        return Addnotreturned;
     }
 
 
@@ -65,8 +65,8 @@ public class Book2 {
         Delete = delete;
     }
 
-    public void setAddreturned(int addreturned) {
-        Addreturned = addreturned;
+    public void setAddnotreturned(int addnotreturned) {
+        Addnotreturned = addnotreturned;
     }
 
 }

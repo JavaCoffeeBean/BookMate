@@ -26,7 +26,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/tabs"
-                    android:background="@drawable/white_grey_border_bottom">
+                    android:background="@color/themeColor">
 
 
                 </com.google.android.material.tabs.TabLayout>
@@ -69,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/bottomNavView_Bar"
-                android:background="@drawable/white_grey_border_top"
+                android:background="@color/themeColor"
                 app:menu="@menu/bottom_navigation_menu">
 
 

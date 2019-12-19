@@ -39,12 +39,12 @@ public class ActivityTwo extends AppCompatActivity {
                         startActivity(intent0);
                         break;
 
-                    case R.id.ic_settings:
+                    case R.id.ic_reminders:
                         Intent intent1 = new Intent(ActivityTwo.this, ActivityOne.class);
                         startActivity(intent1);
                         break;
 
-                    case R.id.ic_reminders:
+                    case R.id.ic_settings:
 
                         break;
 
