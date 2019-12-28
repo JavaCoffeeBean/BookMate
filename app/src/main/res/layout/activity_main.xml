@@ -53,6 +53,16 @@
 
             </androidx.viewpager.widget.ViewPager>
 
+            <ImageView
+                android:id="@+id/add_Book"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/addbook"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="8dp"/>
+
         </RelativeLayout>
 
 

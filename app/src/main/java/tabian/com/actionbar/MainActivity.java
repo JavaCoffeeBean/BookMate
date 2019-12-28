@@ -1,34 +1,59 @@
 package tabian.com.actionbar;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.google.zxing.Result;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.single.PermissionListener;
+
 
 import androidx.appcompat.app.ActionBar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.pm.PackageManager;
+import android.hardware.Camera;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.PermissionRequest;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
+
+
+public class MainActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private static final String TAG = "MainActivity";
+
+
 
     private SectionsPageAdapter mSectionsPageAdapter;
 
@@ -40,6 +65,10 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout homeContainer;
     public PageAdapter pagerAdapter;
     private Fragment newss;
+    private ImageView addBook;
+    private ZXingScannerView scannerView;
+    private TextView txtResult;
+
 
 //    private static final String TAG = "MainActivity";
 
@@ -62,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
 
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
@@ -107,10 +137,39 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+        addBook = findViewById(R.id.add_Book);
+        scannerView = (ZXingScannerView) findViewById(R.id.zxscan);
+        txtResult = (TextView) findViewById(R.id.txt_result);
+
+        addBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        
+
+
+            }
+
+            public void openScannerActivity(){
+                Intent intent = new Intent(this, )
+            }
 
 
 
-    }
+
+
+
+
+
+
+
+    //you have left the onCreate method
+    
+    
+
+
 
     public void tabsFunctionality() {
 
@@ -274,9 +333,19 @@ public class MainActivity extends AppCompatActivity {
         /*initRecyclerView2();*/
     }
 
-    public void testMethod() {
-        System.out.println("newborn");
+    @Override
+    protected void onDestroy() {
+        scannerView.stopCamera();
+        super.onDestroy();
     }
+
+    @Override
+    public void handleResult(Result rawResult) {
+        //Here we can receive raw result
+        txtResult.setText(rawResult.getText());
+        scannerView.startCamera();
+    }
+
 
     /*public void initRecyclerView(){
         Log.d(TAG, "initRecyclerView: init RecyclerView.");

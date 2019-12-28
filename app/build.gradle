@@ -42,9 +42,15 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
 
+    //scan libraries
+    implementation 'me.dm7.barcodescanner:zxing:1.9.13'
+    implementation 'com.karumi:dexter:5.0.0'
+
     implementation("com.github.bumptech.glide:glide:4.9.0") {
         exclude group: "com.android.support"
     }
+
+
     annotationProcessor 'androidx.annotation:annotation:1.1.0'
     implementation("com.github.bumptech.glide:glide:4.9.0@aar") {
         transitive = true
