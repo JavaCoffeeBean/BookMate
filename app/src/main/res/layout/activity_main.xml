@@ -56,6 +56,7 @@
             <ImageView
                 android:id="@+id/add_Book"
                 android:layout_width="50dp"
+                android:onClick=""
                 android:layout_height="50dp"
                 android:background="@drawable/addbook"
                 android:layout_alignParentBottom="true"

@@ -9,10 +9,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 import com.google.zxing.Result;
+import com.gun0912.tedpermission.TedPermission;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
 
@@ -36,7 +38,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.PermissionRequest;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -141,16 +142,11 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         scannerView = (ZXingScannerView) findViewById(R.id.zxscan);
         txtResult = (TextView) findViewById(R.id.txt_result);
 
-        addBook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        
 
 
             }
+
+
 
             public void openScannerActivity(){
                 Intent intent = new Intent(this, ScanActivity.class );
