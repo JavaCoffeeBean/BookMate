@@ -43,7 +43,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
 
 
-    implementation 'gun0912.ted:tedpermission:2.2.2'
+    //implementation 'gun0912.ted:tedpermission:2.2.2'
+    implementation 'pub.devrel:easypermissions:3.0.0'
 
 
 

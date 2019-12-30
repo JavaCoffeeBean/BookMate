@@ -9,13 +9,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 import com.google.zxing.Result;
-import com.gun0912.tedpermission.TedPermission;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.PermissionListener;
 
 
 import androidx.appcompat.app.ActionBar;
@@ -38,6 +36,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -47,11 +46,15 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
 
 
-public class MainActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
+public class MainActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
     private static final String TAG = "MainActivity";
 
 
@@ -144,7 +147,56 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
 
 
 
+        addBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCamera();
             }
+        });
+
+
+
+            }
+
+    @AfterPermissionGranted(123)
+    private void openCamera() {
+        String[] perms = {Manifest.permission.CAMERA, Manifest.permission.INTERNET};
+        if (EasyPermissions.hasPermissions(this, perms)) {
+            Toast.makeText(this, "Opening camera", Toast.LENGTH_SHORT).show();
+            openScannerActivity();
+        } else {
+            EasyPermissions.requestPermissions(this, "We need permissions because this and that",
+                    123, perms);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            new AppSettingsDialog.Builder(this).build().show();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == AppSettingsDialog.DEFAULT_SETTINGS_REQ_CODE) {
+
+        }
+    }
 
 
 
@@ -330,7 +382,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         /*initRecyclerView2();*/
     }
 
-    @Override
+  /*  @Override
     protected void onDestroy() {
         scannerView.stopCamera();
         super.onDestroy();
@@ -341,8 +393,31 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         //Here we can receive raw result
         txtResult.setText(rawResult.getText());
         scannerView.startCamera();
-    }
+    }*/
 
+    /*public void addBooks(View view) {
+
+        PermissionListener permissionListener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                openScannerActivity();
+
+            }
+
+            @Override
+            public void onPermissionDenied(List<String> deniedPermissions) {
+                Toast.makeText(MainActivity.this, "Permissions not given", Toast.LENGTH_SHORT);
+
+            }
+        };
+
+        TedPermission.with(MainActivity.this)
+                .setPermissionListener(permissionListener)
+                .setPermissions(Manifest.permission.CAMERA)
+                .check();
+
+    }
+*/
 
     /*public void initRecyclerView(){
         Log.d(TAG, "initRecyclerView: init RecyclerView.");

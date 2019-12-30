@@ -32,29 +32,8 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         scannerView = (ZXingScannerView) findViewById(R.id.zxscan);
         txtResult = (TextView) findViewById(R.id.txt_result);
 
-        //Request Permission
-        Dexter.withActivity(this)
-                .withPermission(Manifest.permission.CAMERA)
-                .withListener(new PermissionListener() {
-                    @Override
-                    public void onPermissionGranted(PermissionGrantedResponse response) {
-                        scannerView.setResultHandler(ScanActivity.this);
-                        scannerView.startCamera();
-
-                    }
-
-                    @Override
-                    public void onPermissionDenied(PermissionDeniedResponse response) {
-                        Toast.makeText(ScanActivity.this, "You must accept this permission", Toast.LENGTH_SHORT).show();
-
-                    }
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-
-                    }
-                })
-                .check();
+        scannerView.setResultHandler(ScanActivity.this);
+        scannerView.startCamera();
     }
 
     @Override
@@ -68,5 +47,6 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         //Here we can receive raw result
         txtResult.setText(rawResult.getText());
         scannerView.startCamera();
+
     }
 }

@@ -56,7 +56,6 @@
             <ImageView
                 android:id="@+id/add_Book"
                 android:layout_width="50dp"
-                android:onClick=""
                 android:layout_height="50dp"
                 android:background="@drawable/addbook"
                 android:layout_alignParentBottom="true"
@@ -80,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/bottomNavView_Bar"
-                android:background="@color/themeColor"
+                android:background="@color/greennn"
                 app:menu="@menu/bottom_navigation_menu">
 
 
