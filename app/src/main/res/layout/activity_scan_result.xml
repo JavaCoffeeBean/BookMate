@@ -70,15 +70,20 @@
     </RelativeLayout>
 
     <TextView
+        android:layout_below="@id/title_author_BOX"
+        android:id="@+id/prompt_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Book to..."/>git
+        android:text="Add Book to..."
+        android:textColor="@color/white"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="25dp"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title_author_BOX"
-        android:layout_marginTop="35dp">
+        android:layout_below="@id/prompt_user"
+        android:layout_marginTop="20dp">
 
     <Button
         android:paddingRight="10dp"
