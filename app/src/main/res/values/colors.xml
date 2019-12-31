@@ -15,4 +15,5 @@
     <color name="lightgreyyyy">#D3383535</color>
     <color name="author_color">#B1AFAF</color>
     <color name="red">#FF0000</color>
+    <color name="red_darker">#550000</color>
 </resources>
