@@ -12,3 +12,4 @@ public class ScanResult extends AppCompatActivity {
         setContentView(R.layout.activity_scan_result);
     }
 }
+
