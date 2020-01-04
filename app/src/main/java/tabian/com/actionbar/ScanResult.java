@@ -11,5 +11,7 @@ public class ScanResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_result);
     }
+
+
 }
 

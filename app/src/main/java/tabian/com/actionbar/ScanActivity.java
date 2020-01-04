@@ -3,6 +3,7 @@ package tabian.com.actionbar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
     private ZXingScannerView scannerView;
     private TextView txtResult;
+    public static final String SCAN_TEXT = "tabian.com.actionbar";
 
 
     @Override
@@ -45,8 +47,17 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     @Override
     public void handleResult(Result rawResult) {
         //Here we can receive raw result
+        String scan_result = rawResult.getText();
+        int scann = rawResult.getNumBits();
+
+
+        Intent intent = new Intent(this, ScanResult.class );
+        intent.putExtra(SCAN_TEXT, scann);
+        startActivity(intent);
+
+
         txtResult.setText(rawResult.getText());
-        scannerView.startCamera();
+        /*scannerView.startCamera();*/
 
     }
 }

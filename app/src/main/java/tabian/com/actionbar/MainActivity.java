@@ -201,6 +201,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
 
             public void openScannerActivity(){
+
+
                 Intent intent = new Intent(this, ScanActivity.class );
                 startActivity(intent);
             }
