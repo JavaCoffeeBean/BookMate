@@ -52,7 +52,7 @@ public class ScanResult extends AppCompatActivity {
 
                 if (!response.isSuccessful()) {
                     Log.d(TAG, "onResponse:Server was contacted, but could not find what you wanted. ");
-                    textViewResult.setText("Code: " + response.code());
+                    book_title.setText("Code: " + response.code());
                     return;
                 }
 
@@ -71,6 +71,16 @@ public class ScanResult extends AppCompatActivity {
                 }
                 catch (Exception e) {
                     book_cover.setImageResource(R.drawable.noimage);
+                }
+
+
+                try {
+                    book_author.setText(response.body().getItems().get(0).getVolumeInfo().getTitle());
+
+
+                }
+                catch (Exception e) {
+                    book_author.setText("Error retrieviing Book author");
                 }
 
             }
