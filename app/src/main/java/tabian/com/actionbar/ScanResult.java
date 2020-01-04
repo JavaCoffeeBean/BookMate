@@ -2,6 +2,7 @@ package tabian.com.actionbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 public class ScanResult extends AppCompatActivity {
@@ -10,6 +11,9 @@ public class ScanResult extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_result);
+
+        Intent intent = getIntent();
+        String scan_result2 = intent.getStringExtra(ScanActivity.SCAN_TEXT);
     }
 
 
