@@ -15,6 +15,9 @@ public class VolumeInfo {
     @SerializedName("industryIdentifiers")
     private ArrayList<IndustryIdentifiers> industryIdentifiers;
 
+    @SerializedName("authors")
+    private ArrayList<Author> authors;
+
 
     public String getTitle() {
         return title;
@@ -26,5 +29,9 @@ public class VolumeInfo {
 
     public ArrayList<IndustryIdentifiers> getIndustryIdentifiers() {
         return industryIdentifiers;
+    }
+
+    public ArrayList<Author> getAuthors() {
+        return authors;
     }
 }
