@@ -5,9 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.zxing.Result;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
@@ -17,12 +23,24 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     private ZXingScannerView scannerView;
     private TextView txtResult;
     public static final String SCAN_TEXT = "tabian.com.actionbar";
+    private static final String TAG = "MainActivity";
+
+    private TextView book_title;
+    private TextView book_author;
+    private ImageView book_cover;
+
+    ScanResult scanResult = new ScanResult();
 
 
     @Override
@@ -47,8 +65,12 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     @Override
     public void handleResult(Result rawResult) {
         //Here we can receive raw result
-        String scan_result = rawResult.getText();
-        int scann = rawResult.getNumBits();
+        long scann = rawResult.getTimestamp();
+
+        txtResult.setText(rawResult.getText());
+
+
+
 
 
         Intent intent = new Intent(this, ScanResult.class );
@@ -56,8 +78,8 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         startActivity(intent);
 
 
-        txtResult.setText(rawResult.getText());
         /*scannerView.startCamera();*/
 
     }
+
 }

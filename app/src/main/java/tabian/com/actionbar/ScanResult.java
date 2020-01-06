@@ -22,6 +22,8 @@ public class ScanResult extends AppCompatActivity {
     private TextView book_author;
     private ImageView book_cover;
 
+    private static final String TAG = "MainActivity";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,7 @@ public class ScanResult extends AppCompatActivity {
         setContentView(R.layout.activity_scan_result);
 
         Intent intent = getIntent();
-        String scan_result2 = intent.getStringExtra(ScanActivity.SCAN_TEXT);
+        final long scan_result2 = intent.getLongExtra(ScanActivity.SCAN_TEXT,2000000000000L);
 
         book_title = findViewById(R.id.book_title);
         book_author = findViewById(R.id.author);
@@ -75,7 +77,7 @@ public class ScanResult extends AppCompatActivity {
 
 
                 try {
-                    book_author.setText(response.body().getItems().get(0).getVolumeInfo().getTitle());
+                    book_author.setText(response.body().getItems().get(0).getVolumeInfo().getAuthors().get(0).toString());
 
 
                 }
@@ -91,8 +93,10 @@ public class ScanResult extends AppCompatActivity {
             }
         });
     }
-    }
 
 
 }
+
+
+
 
