@@ -30,13 +30,7 @@ public class ScanResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_result);
 
-        Intent intent = getIntent();
-        final long scan_result2 = intent.getLongExtra(ScanActivity.SCAN_TEXT,2000000000000L);
-
-        book_title = findViewById(R.id.book_title);
-        book_author = findViewById(R.id.author);
-        book_cover = findViewById(R.id.book_Cover);
-
+        /*book_title = findViewById(R.id.book_title);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://www.googleapis.com/")
@@ -45,7 +39,7 @@ public class ScanResult extends AppCompatActivity {
 
         OpenLibraryApi openLibraryApi = retrofit.create(OpenLibraryApi.class);
 
-        Call<Post> call = openLibraryApi.getPosts(scan_result2);
+        Call<Post> call = openLibraryApi.getPosts(9781586638474L);
 
         call.enqueue(new Callback<Post>() {
             @Override
@@ -66,6 +60,7 @@ public class ScanResult extends AppCompatActivity {
                     book_title.setText("Error retrieviing Book name");
                 }
 
+                book_cover = findViewById(R.id.book_Cover);
 
                 try {
 
@@ -75,23 +70,13 @@ public class ScanResult extends AppCompatActivity {
                     book_cover.setImageResource(R.drawable.noimage);
                 }
 
-
-                try {
-                    book_author.setText(response.body().getItems().get(0).getVolumeInfo().getAuthors().get(0).toString());
-
-
-                }
-                catch (Exception e) {
-                    book_author.setText("Error retrieviing Book author");
-                }
-
             }
 
             @Override
             public void onFailure(Call<Post> call, Throwable t) {
                 book_title.setText(t.getMessage());
             }
-        });
+        });*/
     }
 
 

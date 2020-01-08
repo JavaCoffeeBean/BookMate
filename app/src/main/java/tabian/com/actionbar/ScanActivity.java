@@ -71,14 +71,62 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
 
 
+        setContentView(R.layout.activity_scan_result);
 
-
-        Intent intent = new Intent(this, ScanResult.class );
+        /*Intent intent = new Intent(this, ScanResult.class );
         intent.putExtra(SCAN_TEXT, scann);
-        startActivity(intent);
+        startActivity(intent);*/
 
 
         /*scannerView.startCamera();*/
+
+        book_title = findViewById(R.id.book_title);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://www.googleapis.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        OpenLibraryApi openLibraryApi = retrofit.create(OpenLibraryApi.class);
+
+        Call<Post> call = openLibraryApi.getPosts(9781586638474L);
+
+        call.enqueue(new Callback<Post>() {
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
+                Log.d(TAG, "onResponse: You got a response, and it was Gucci");
+
+                if (!response.isSuccessful()) {
+                    Log.d(TAG, "onResponse:Server was contacted, but could not find what you wanted. ");
+                    book_title.setText("Code: " + response.code());
+                    return;
+                }
+
+                try {
+
+                    book_title.setText(response.body().getItems().get(0).getVolumeInfo().getTitle());
+                }
+                catch (Exception e) {
+                    book_title.setText("Error retrieviing Book name");
+                }
+
+                book_cover = findViewById(R.id.book_Cover);
+
+                try {
+
+                    Glide.with(book_cover).load(response.body().getItems().get(0).getVolumeInfo().getImageLinks().getThumbnail()).into(book_cover);
+                }
+                catch (Exception e) {
+                    book_cover.setImageResource(R.drawable.noimage);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
+                book_title.setText(t.getMessage());
+            }
+        });
 
     }
 
